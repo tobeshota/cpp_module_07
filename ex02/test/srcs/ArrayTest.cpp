@@ -27,7 +27,7 @@ TEST(ArrayTest, CopyConstructor) {
     arr[i] = i * 10;
   }
 
-  Array<int> copyArr = arr;  // コピーコンストラクタで複製
+  Array<int> copyArr(arr);  // コピーコンストラクタで複製
   EXPECT_EQ(copyArr.size(), arr.size());
 
   for (unsigned int i = 0; i < arr.size(); i++) {
@@ -75,12 +75,10 @@ TEST(ArrayTest, SubscriptOperator) {
 // 範囲外アクセスのテスト
 TEST(ArrayTest, OutOfBoundsAccess) {
   Array<int> arr(5);
-  EXPECT_THROW(
-      arr[10],
-      std::out_of_range);  // 範囲外アクセスで例外をスローすることを確認
-  EXPECT_THROW(
-      arr[-1],
-      std::out_of_range);  // マイナスのインデックスで例外をスローすることを確認
+  // 範囲外アクセスで例外をスローすることを確認
+  EXPECT_THROW(arr[10], std::out_of_range);
+  // マイナスのインデックスで例外をスローすることを確認
+  EXPECT_THROW(arr[-1], std::out_of_range);
 }
 
 // size()メンバ関数のテスト
