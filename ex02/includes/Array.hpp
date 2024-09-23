@@ -11,22 +11,37 @@ class Array {
  public:
   Array() : _array(NULL), _n(0) {}
 
-  Array(unsigned int n) : _n(n) { _array = new T[n](); }
+  Array(unsigned int n) : _n(n) {
+    _array = new T[n]();
+    if (!_array) {
+      throw std::bad_alloc();
+    }
+  }
 
   Array(const Array& other) : _n(other._n) {
-    _array = new T[_n];
-    for (unsigned int i = 0; i < _n; i++) {
-      _array[i] = other._array[i];
+    if (_n > 0) {
+      _array = new T[_n];
+      if (!_array) {
+        throw std::bad_alloc();
+      }
+      for (unsigned int i = 0; i < _n; i++) {
+        _array[i] = other._array[i];
+      }
     }
   }
 
   Array& operator=(const Array& other) {
     if (this != &other) {
       _n = other._n;
-      delete[] _array;
-      _array = new T[_n];
-      for (unsigned int i = 0; i < _n; i++) {
-        _array[i] = other._array[i];
+      if (_n > 0) {
+        delete[] _array;
+        _array = new T[_n];
+        if (!_array) {
+          throw std::bad_alloc();
+        }
+        for (unsigned int i = 0; i < _n; i++) {
+          _array[i] = other._array[i];
+        }
       }
     }
     return *this;
