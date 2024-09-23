@@ -9,9 +9,12 @@ class Array {
   unsigned int _n;
 
  public:
-  Array() : _array(NULL), _n(0) {}
+  Array() : _array(NULL), _n(0) {
+    std::cout << "(constructor)Array Default constructor called" << std::endl;
+  }
 
   Array(unsigned int n) : _n(n) {
+    std::cout << "(constructor)Array constructor called" << std::endl;
     _array = new T[n]();
     if (!_array) {
       throw std::bad_alloc();
@@ -19,6 +22,7 @@ class Array {
   }
 
   Array(const Array& other) : _n(other._n) {
+    std::cout << "(constructor)Array Copy constructor called" << std::endl;
     if (_n > 0) {
       _array = new T[_n];
       if (!_array) {
@@ -47,7 +51,10 @@ class Array {
     return *this;
   }
 
-  ~Array() { delete[] _array; }
+  ~Array() {
+    std::cout << "(destructor)Array destructor called" << std::endl;
+    delete[] _array;
+  }
 
   T& operator[](unsigned int index) {
     if (index >= _n) {
