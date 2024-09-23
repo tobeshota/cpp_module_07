@@ -16,7 +16,7 @@ TEST(ArrayTest, SizeConstructor) {
   EXPECT_EQ(arr.size(), 5);
   for (unsigned int i = 0; i < arr.size(); i++) {
     // 要素がデフォルトで初期化されていることを確認（intの場合は0）
-	EXPECT_EQ(arr[i], 0);
+    EXPECT_EQ(arr[i], 0);
   }
 }
 
