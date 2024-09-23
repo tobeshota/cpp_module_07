@@ -1,13 +1,21 @@
-# CPP MODULE 06 EX00 TEST
+# ToDo List for Exercise 01: Iter
 
-### ScalarConverterTest
-- [x] ScalarConverterクラスが存在する
-- [x] ScalarConverterクラスがprivate修飾子のコンストラクタを持つ
-- [x] ScalarConverterクラスは静的メソッドstatic type convert(std::string input);を持つ
-- [x] convertメソッドにおいて，パラメータとして受け取ったリテラルinputの型を検知する
-- [x] convertメソッドにおいて，検知したinputの型を文字列から実際の型に変換する
-- [x] convertメソッドにおいて，inputをchar型に明示的に変換する
-- [x] convertメソッドにおいて，inputをint型に明示的に変換する
-- [x] convertメソッドにおいて，inputをfloat型に明示的に変換する
-- [x] convertメソッドにおいて，inputをdouble型に明示的に変換する
-- [x] convertメソッドにおいて，inputを型変換した結果を標準出力ファイルに書き込む
+## テスト内容
+
+1. **配列の要素を増加させるテスト**
+   - テストケース: `IncrementArray`
+     - 目的: `iter`関数を使用して、整数配列の各要素を1増加させる。
+     - 入力: 配列 `{1, 2, 3, 4, 5}`。
+     - 期待される結果: 各要素が1増加し、配列は `{2, 3, 4, 5, 6}` になること。
+
+2. **空の配列に対するテスト**
+   - テストケース: `EmptyArray`
+     - 目的: 空の配列に対して`iter`関数を適用してもエラーが出ないことを確認。
+     - 入力: `nullptr` および長さ `0`。
+     - 期待される結果: 特に検証なしだが、クラッシュしないことが重要。
+
+3. **文字列配列に対するテスト**
+   - テストケース: `StringArray`
+     - 目的: `iter`関数を使用して、各文字列に "!" を追加する。
+     - 入力: 配列 `{"hello", "world"}`。
+     - 期待される結果: 各要素が "!" を追加され、配列は `{"hello!", "world!"}` になること。
