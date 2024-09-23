@@ -1,4 +1,6 @@
 #include <Array.hpp>
+#include <cstdlib>  // for rand()
+#include <ctime>    // for time()
 #define MAX_VAL 750
 
 int main(int, char**) {
