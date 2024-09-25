@@ -49,3 +49,22 @@ TEST(IterFunctionTest, StringArray) {
   EXPECT_EQ(arr[0], "hello!");
   EXPECT_EQ(arr[1], "world!");
 }
+
+// const引数の関数ポインタに対するテスト
+TEST(IterFunctionTest, ConstArg) {
+  std::string arr[] = {"FAILURE", "SUCCESS"};
+  size_t arrLen = sizeof(arr) / sizeof(arr[0]);
+
+  // iter関数を使用して各文字列を強調して出力する関数を作成
+  void (*emphasizeStr)(const std::string&) = [](const std::string& str) {
+    std::cout << ">>>>>>>>>> " << str << " <<<<<<<<<<\n";
+  };
+
+  testing::internal::CaptureStdout();  // 標準出力キャプチャ開始
+  iter(arr, arrLen, emphasizeStr);
+  std::string actual =
+      testing::internal::GetCapturedStdout();  // 標準出力のキャプチャ結果を取得
+  std::string expect =
+      ">>>>>>>>>> FAILURE <<<<<<<<<<\n>>>>>>>>>> SUCCESS <<<<<<<<<<\n";  // 望まれる標準出力を定義
+  EXPECT_EQ(expect, actual);
+}
